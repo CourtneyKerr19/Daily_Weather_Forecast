@@ -1,0 +1,9 @@
+body {
+  background: #3c8fee;
+  font-family: "Gill Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
