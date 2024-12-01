@@ -47,3 +47,20 @@ button {
 button:hover {
   background: #ffffffb3;
 }
+
+#temp-div p {
+  font-size: 60px;
+  margin-top: -30px;
+}
+
+#weather-info {
+  font-size: 20px;
+}
+
+#weather-icon {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 10px;
+  margin-bottom: 0;
+  display: none;
+}
