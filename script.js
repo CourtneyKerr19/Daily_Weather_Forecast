@@ -7,7 +7,7 @@ document.getElementById('search-button').addEventListener('click', () => {
     return;
   }
   fetchWeatherData(city);
-}
+});
 
 async function getWeatherData(city) {
   try {
