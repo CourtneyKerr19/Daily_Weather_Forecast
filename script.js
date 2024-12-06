@@ -1,19 +1,18 @@
 const apiKey = '61c3c3b2ea79768d54718ba82bbcbf6d';
 
-async function getWeather(city) {
+async function getWeatherData(city) {
   try {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
-    const data = await response.json();
-    displayWeather(data);
+    const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
+    const weatherData = await response.json();
 
-    const hourlyResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`);
+    if (weatherResponse.ok) {
+      displayWeather(weatherData);
+    } else {
+      throw new Error(weatherData.message || 'Something went wrong');
+    } 
+    
 
-    const hourlyData = await hourlyResponse.json();
-    displayHourlyWeather(hourlyData.list.slice(0, 5));
-  } catch (error) {
-    console.log('Error fetching data', error);
-  }
-  }
+    
 
 function displayWeather(data) {
   document.getElementById('date-time').textContent = `${new Date().toLocaleTimeString()}`;
@@ -72,5 +71,4 @@ document.getElementById('city').addEventListener('keypress', (event) => {
   if (event.key === 'Enter') {
     const city = document.getElementById('city').value;
     fetchWeatherData(city);
-  }
-}
+  };
