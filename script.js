@@ -1,7 +1,7 @@
 const apiKey = '61c3c3b2ea79768d54718ba82bbcbf6d';
 
 document.getElementById('search-button').addEventListener('click', () => {
-  const city = document.getElementById('cityt').value.trim();
+  const city = document.getElementById('city').value.trim();
   if(!city) {
     alert('Please enter a city name');
     return;
@@ -30,7 +30,7 @@ async function fetchWeatherData(city) {
       }
     } catch (error) {
       console.error('Error:', error.message );
-      alert(`Error: ${error.message}`);
+      alert(`Error fetching data: ${error.message}. Please check the city name or try again later.`);
     }
   }
 
@@ -44,11 +44,11 @@ async function fetchWeatherData(city) {
       weatherInfo.innerHTML = '';
       dateTimeDiv.innerHTML = '';
 
-      const cityName = date.name
-      const temp = Math.round(data.main.temp - 273.15);
-      const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+      const cityName = data.name
+      const temp = Math.round(data.main.temp);
+      const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
 
-      const currentTime = new Date().toLocateTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true});
+      const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true});
 
       dateTimeDiv.innerHTML = `<p>Current Time: ${currentTime}</p>`;
 
@@ -66,7 +66,7 @@ async function fetchWeatherData(city) {
 
       next24Hours.forEach((item) => {
         const time = new Date(item.dt * 1000).toLocaleTimeString([], {hour: '2-digit', hour12: true});
-        const temp = Math.round(item.main.temp - 273.15);
+        const temp = Math.round(item.main.temp);
         const iconUrl = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
 
         const hourlyItem = `<div class="hourly-item"><p>${time}</p><img src="${iconUrl}" alt="${item.weather[0].description}"><p>${temp}°C</p></div>`;
