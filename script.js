@@ -38,4 +38,12 @@ async function getWeatherData(city) {
       const currentTime = new Date().toLocateTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true});
 
       dateTimeDiv.innerHTML = `<p>Current Time: ${currentTime}</p>`;
+
+      tempDiv.innerHTML = `<p>${temp}°C</p>`;
+      weatherInfo.innerHTML = `<p>${cityName}</p><p>${description}</p>`;
+      weatherIcon.src = iconUrl;
+      weatherIcon.style.display = 'block';
+
+      const hourlyForecastDiv = document.getElementById('hourly-forecast');
+      hourlyForecastDiv.innerHTML = '';
     }
