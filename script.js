@@ -18,6 +18,7 @@ async function getWeatherData(city) {
       displayHourlyForecast(forecastData.list);
     } else {
       throw new Error(forecastData.message || 'Something went wrong');
+      }
     } catch (error) {
       console.error('Error:', error.message );
       alert(`Error: ${error.message}`);
@@ -46,4 +47,16 @@ async function getWeatherData(city) {
 
       const hourlyForecastDiv = document.getElementById('hourly-forecast');
       hourlyForecastDiv.innerHTML = '';
-    }
+
+      const next24Hours = hourlyData.slice(0, 8); 
+
+      next24Hours.forEach((item) => {
+        const time = new Date(item.dt * 1000).toLocaleTimeString([], {hour: '2-digit', hour12: true});
+        const temp = Math.round(item.main.temp - 273.15);
+        const iconUrl = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
+
+        const hourlyItem = `<div class="hourly-item"><p>${time}</p><img src="${iconUrl}" alt="${item.weather[0].description}"><p>${temp}°C</p></div>`;
+        hourlyForecastDiv.innerHTML += hourlyItem;
+          });
+        }
+      }
