@@ -1,5 +1,14 @@
 const apiKey = '61c3c3b2ea79768d54718ba82bbcbf6d';
 
+document.getElementById('search-button').addEventListener('click', () => {
+  const city = document.getElementById('cityt').value.trim();
+  if(!city) {
+    alert('Please enter a city name');
+    return;
+  }
+  fetchWeatherData(city);
+}
+
 async function getWeatherData(city) {
   try {
     const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
