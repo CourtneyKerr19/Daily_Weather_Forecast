@@ -10,6 +10,18 @@ async function getWeatherData(city) {
     } else {
       throw new Error(weatherData.message || 'Something went wrong');
     } 
+
+    const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`);
+    const forecastData = await forecastResponse.json();
+
+    if (forecastResponse.ok) {
+      displayHourlyForecast(forecastData.list);
+    } else {
+      throw new Error(forecastData.message || 'Something went wrong');
+    } catch (error) {
+      console.error('Error:', error.message );
+      alert(`Error: ${error.message}`);
+    }
     
 
     
