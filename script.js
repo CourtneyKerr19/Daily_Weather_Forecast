@@ -34,6 +34,8 @@ async function getWeatherData(city) {
       const cityName = date.name
       const temp = Math.round(data.main.temp - 273.15);
       const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+
+      const currentTime = new Date().toLocateTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true});
     }
     
 
