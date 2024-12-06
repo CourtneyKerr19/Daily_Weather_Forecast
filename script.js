@@ -62,3 +62,15 @@ function displayHourlyForecast(hourlyData) {
     hourlyForecastDiv.appendChild(hourlyForecast);
   });
 }
+
+document.getElementById('search-button').addEventListener('click', () => {
+  const city = document.getElementById('city').value;
+  fetchWeatherData(city);
+});
+
+document.getElementById('city').addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+    const city = document.getElementById('city').value;
+    fetchWeatherData(city);
+  }
+}
