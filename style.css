@@ -1,5 +1,5 @@
 body {
-  background: rgb(157, 211, 255);
+  background: #ff79e6;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   align-items: center;
@@ -9,13 +9,13 @@ body {
 }
 
 #weather-container {
-  background: rgb(188, 98, 226);
+  background: rgb(193, 70, 221, 0.762);
   max-width: 400px;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 8px 32px black;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
 }
 
@@ -34,7 +34,7 @@ input {
 }
 
 button {
-  background: #7508c4;
+  background: #debff4;
   color: white;
   padding: 10px;
   border: none;
@@ -46,7 +46,7 @@ button {
 }
 
 button:hover {
-  background: pink;
+  background: #8b48d7;
 }
 
 #date-time {
