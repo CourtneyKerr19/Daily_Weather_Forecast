@@ -9,10 +9,10 @@ document.getElementById('search-button').addEventListener('click', () => {
   fetchWeatherData(city);
 });
 
-async function getWeatherData(city) {
+async function fetchWeatherData(city) {
   try {
     const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
-    const weatherData = await response.json();
+    const weatherData = await weatherResponse.json();
 
     if (weatherResponse.ok) {
       displayWeather(weatherData);
@@ -31,7 +31,10 @@ async function getWeatherData(city) {
     } catch (error) {
       console.error('Error:', error.message );
       alert(`Error: ${error.message}`);
+    }
+  }
 
+  function displayWeather(data) {
       const tempDiv = document.getElementById('temp-div');
       const weatherInfo = document.getElementById('weather-info');
       const weatherIcon = document.getElementById('weather-icon');
@@ -53,7 +56,9 @@ async function getWeatherData(city) {
       weatherInfo.innerHTML = `<p>${cityName}</p><p>${description}</p>`;
       weatherIcon.src = iconUrl;
       weatherIcon.style.display = 'block';
+  }
 
+  function displayHourlyForecast(hourlyData) {
       const hourlyForecastDiv = document.getElementById('hourly-forecast');
       hourlyForecastDiv.innerHTML = '';
 
@@ -68,4 +73,3 @@ async function getWeatherData(city) {
         hourlyForecastDiv.innerHTML += hourlyItem;
           });
         }
-      }
