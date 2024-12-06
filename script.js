@@ -40,4 +40,25 @@ function displayAdditionalInfo(data) {
   `<p>Humidity: ${humidity}%</p>
   <p>Wind Speed: ${windSpeed} m/s</p><
   p>Pressure: ${pressure} hPa</p>`;
+} 
+
+function displayHourlyForecast(hourlyData) {
+  const hourlyForecastDiv = document.getElementById('hourly-forecast');
+  hourlyForecastDiv.innerHTML = '';
+
+  hourlyData.forEach((data) => {
+    const date = new Date(data.dt * 1000);
+    const time = date.toLocaleTimeString();
+    const temp = data.main.temp;
+    const weatherIcon = data.weather[0].icon;
+
+    const hourlyForecast = document.createElement('div');
+    hourlyForecast.classList.add('hourly-forecast');
+    hourlyForecast.innerHTML = 
+    `<p>${time}</p>
+    <img src="http://openweathermap.org/img/wn/${weatherIcon}.png" />
+    <p>${temp}°C</p>`;
+
+    hourlyForecastDiv.appendChild(hourlyForecast);
+  });
 }
